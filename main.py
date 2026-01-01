@@ -3,6 +3,7 @@
 import sqlite3 #connect to database & run SQL code
 import random #to randomly generate values
 import string #ascii values
+import csv #built in functions for handling csv files
 
 #Establish Connection with Database
 connect = sqlite3.connect("Database.db") 
@@ -59,4 +60,15 @@ def GenerateItem(item_type,item_length):
     elif item_type.lower() == "m":
         return (''.join(random.choices(string.ascii_letters + string.digits, k=item_length))) 
 
-GenerateDatabase() #calls the function
+#Function which converts .db files to .csv files
+def DBtoCSV():
+    cursor.execute("SELECT * FROM Database") #selects all values from the database file
+    rows = cursor.fetchall() #stores returned values from Item row in a single variable
+
+    #Opens/Overwrites current or makes a new csv file if it doesn't already exists and writes data from .db file to .csv file
+    with open("list.csv","w",newline="") as file:
+        writer = csv.writer(file)
+        writer.writerows(rows)
+
+#GenerateDatabase() #calls the function
+DBtoCSV()
