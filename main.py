@@ -4,6 +4,7 @@ import sqlite3 #connect to database & run SQL code
 import random #to randomly generate values
 import string #ascii values
 import csv #built in functions for handling csv files
+import time #used to track processor execution time for the sorts
 
 #Establish Connection with Database
 connect = sqlite3.connect("Database.db") 
@@ -24,18 +25,14 @@ def Menu():
         return GenerateDatabase()
     elif choice == 2:
         print(DBtoCSV())
-        return
     elif choice == 3:
-        print(BubbleSort())
-        return
+        print(ExecutionTimer(BubbleSort))
     elif choice == 4:
-        print(InsetionSort())
-        return
+        print(ExecutionTimer(InsetionSort))
     elif choice == 5:
-        print(MergeSort())
-        return
+        print(ExecutionTimer(MergeSort))
     else:
-        return "Invalid Choice"
+        print("Invalid Choice")
     
 #Databse Generation Function (Users able to upload their own .db files if they wish however)
 def GenerateDatabase():
@@ -100,14 +97,29 @@ def DBtoCSV():
 
     return ".db file successfully converted to .csv file"
 
+#Bubble Sort Function
 def BubbleSort():
-    return "IN PROGRESS B"
+    # CODE GOES HERE
+    return "BS"
 
+#Insertion Sort Function 
 def InsetionSort():
-    return "IN PROGRESS I"
+    # CODE GOES HERE
+    return "IS"
 
+#Merge Sort Function
 def MergeSort():
-    return "IN PROGRESS M"
+    # CODE GOES HERE
+    return "MS"
+
+#Processor Execution Timing Function Based on Sort Performed
+def ExecutionTimer(SortFunction): #Takes type of sort as the parameter
+    start_timer = time.perf_counter()
+    SortFunction() #Performs sort
+    stop_timer = time.perf_counter()
+
+    time_taken = stop_timer - start_timer #calculates final time
+    return time_taken
 
 #GenerateDatabase() #calls the function
 Menu()
