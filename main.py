@@ -9,18 +9,30 @@ import csv #built in functions for handling csv files
 connect = sqlite3.connect("Database.db") 
 cursor = connect.cursor() #acts as a pointer
 
-#Simple Text Based Menu Function
+#Simple Text Based Menu Function 
 def Menu():
     choice=int(input("""
 ============================== MENU ==============================
 = 1 - Generate New Database (Overwrite) or Add Items to Database =
 = 2 - Convert .db file to .csv file                              =
+= 3 - Perform Bubble Sort on .csv file                           =
+= 4 - Perform Insertion Sort on .csv file                        =
+= 5 - Perform Merge Sort on .csv file                            =
 ==================================================================
 """))
     if choice == 1:
         return GenerateDatabase()
     elif choice == 2:
         print(DBtoCSV())
+        return
+    elif choice == 3:
+        print(BubbleSort())
+        return
+    elif choice == 4:
+        print(InsetionSort())
+        return
+    elif choice == 5:
+        print(MergeSort())
         return
     else:
         return "Invalid Choice"
@@ -87,6 +99,15 @@ def DBtoCSV():
         writer.writerows(rows)
 
     return ".db file successfully converted to .csv file"
+
+def BubbleSort():
+    return "IN PROGRESS B"
+
+def InsetionSort():
+    return "IN PROGRESS I"
+
+def MergeSort():
+    return "IN PROGRESS M"
 
 #GenerateDatabase() #calls the function
 Menu()
