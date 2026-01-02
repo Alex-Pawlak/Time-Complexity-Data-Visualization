@@ -9,14 +9,30 @@ import csv #built in functions for handling csv files
 connect = sqlite3.connect("Database.db") 
 cursor = connect.cursor() #acts as a pointer
 
+#Simple Text Based Menu Function
+def Menu():
+    choice=int(input("""
+============================== MENU ==============================
+= 1 - Generate New Database (Overwrite) or Add Items to Database =
+= 2 - Convert .db file to .csv file                              =
+==================================================================
+"""))
+    if choice == 1:
+        return GenerateDatabase()
+    elif choice == 2:
+        print(DBtoCSV())
+        return
+    else:
+        return "Invalid Choice"
+    
 #Databse Generation Function (Users able to upload their own .db files if they wish however)
 def GenerateDatabase():
     #User determines whether to overwrite current database, or add to the existing one
-    overwrite_or_add = input("Would you like to overwrite the Database file if it exists, or add items to the current Database? (O/A)\n")
+    overwrite_or_add = input("Would you like to overwrite the Database file if it exists (O), or add items to the current Database (A)\n")
     
     #Loops until received valid input
     while overwrite_or_add.lower() != "o" and overwrite_or_add.lower() != "a":
-        overwrite_or_add = input("Incorrect Input!\nWould you like to overwrite the Database file if it exists, or add items to the current Database? (O/A)\n")
+        overwrite_or_add = input("Incorrect Input!\nWould you like to overwrite the Database file if it exists (O), or add items to the current Database (A)\n")
 
     #Selection statements determine whether to overwrite Database or add to existing Database
     if overwrite_or_add.lower() == "o":     #overwrite
@@ -41,9 +57,9 @@ def GenerateDatabase():
     item_length = 6
 
     #Loops until received valid input
-    item_type = input("Enter the type of items you want to generate:\nLetters Only (L) / Digits Only (D) / Mix Of Both (M)\n")
+    item_type = input("Enter the type of items you want to generate:   Letters Only (L) / Digits Only (D) / Mix Of Both (M)\n")
     while item_type.lower() != "l" and item_type.lower() != "d" and item_type.lower() != "m":
-        item_type = input("Incorrect Input! Enter L, D or M!\nEnter the type of items you want to generate:\nLetters Only (L) / Digits Only (D) / Mix Of Both (M)\n")
+        item_type = input("Incorrect Input! Enter L, D or M!\nEnter the type of items you want to generate:   Letters Only (L) / Digits Only (D) / Mix Of Both (M)\n")
     
     #Adds item one by one until amount of items to be generated is fulfilled
     for i in range(amount_of_items):
@@ -70,5 +86,7 @@ def DBtoCSV():
         writer = csv.writer(file)
         writer.writerows(rows)
 
+    return ".db file successfully converted to .csv file"
+
 #GenerateDatabase() #calls the function
-DBtoCSV()
+Menu()
