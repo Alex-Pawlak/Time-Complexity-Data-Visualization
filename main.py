@@ -5,6 +5,7 @@ import random #to randomly generate values
 import string #ascii values
 import csv #built in functions for handling csv files
 import time #used to track processor execution time for the sorts
+import sys #to perform system operations such as force quit application
 
 #Establish Connection with Database
 connect = sqlite3.connect("Database.db") 
@@ -22,7 +23,7 @@ def Menu():
 ==================================================================
 """))
     if choice == 1:
-        return GenerateDatabase()
+        print(GenerateDatabase())
     elif choice == 2:
         print(DBtoCSV())
     elif choice == 3:
@@ -53,6 +54,7 @@ def GenerateDatabase():
             Item TEXT NOT NULL PRIMARY KEY
         )
         ''') #commits transaction
+        print("Database has been overwrited")
     elif overwrite_or_add.lower() == "a":     #add
         #Creates a new table Database.db if it doesn't already exists: single column "Item" - primary key
         cursor.execute('''
@@ -66,24 +68,45 @@ def GenerateDatabase():
     item_length = 6
 
     #Loops until received valid input
-    item_type = input("Enter the type of items you want to generate:   Letters Only (L) / Digits Only (D) / Mix Of Both (M)\n")
-    while item_type.lower() != "l" and item_type.lower() != "d" and item_type.lower() != "m":
-        item_type = input("Incorrect Input! Enter L, D or M!\nEnter the type of items you want to generate:   Letters Only (L) / Digits Only (D) / Mix Of Both (M)\n")
+    item_type = input("Enter the type of items you want to generate:   Letters Only (L) / Digits Only (D)\n")
+    while item_type.lower() != "l" and item_type.lower() != "d":
+        item_type = input("Incorrect Input! Enter L or D!\nEnter the type of items you want to generate:   Letters Only (L) / Digits Only (D)\n")
     
     #Adds item one by one until amount of items to be generated is fulfilled
     for i in range(amount_of_items):
         item_generated = GenerateItem(item_type,item_length)
+        if item_generated is True:
+            print("Type Error: Attempted to add digits to letters, or letters to digits in database")
+            sys.exit() #to prevent the return statement from printing, force stops program
         cursor.execute("INSERT INTO Database (Item) VALUES (?)", (item_generated,)) #Inserts current item_generated into the Item column
         connect.commit() #commits transaction
+    
+    return "Items successfully added to the database"
 
 #Item Generation Function - generated a random sequence of characters, digits, or mix of both based on user input and returns Item    
 def GenerateItem(item_type,item_length):
-    if item_type.lower() == "l":
-        return (''.join(random.choices(string.ascii_letters, k=item_length)))
-    elif item_type.lower() == "d":
-        return (''.join(random.choices(string.digits, k=item_length)))
-    elif item_type.lower() == "m":
-        return (''.join(random.choices(string.ascii_letters + string.digits, k=item_length))) 
+    cursor.execute("SELECT Item FROM Database")
+    rows = cursor.fetchall()
+    existing_items = [str(row[0]) for row in rows]
+    type_error = False
+
+    if item_type.lower() == "l": #letters only
+        if all(x.isalpha() for x in existing_items):
+            return (''.join(random.choices(string.ascii_letters, k=item_length)))
+        else:
+            type_error = True
+            return type_error
+        
+    elif item_type.lower() == "d": #digits only
+        if all(x.isdigit() for x in existing_items):
+            return (''.join(random.choices(string.digits, k=item_length)))
+        else:
+            type_error = True
+            return type_error
+    
+    #can't sort letters and digits
+    #elif item_type.lower() == "m":
+    #    return (''.join(random.choices(string.ascii_letters + string.digits, k=item_length))) 
 
 #Function which converts .db files to .csv files
 def DBtoCSV():
