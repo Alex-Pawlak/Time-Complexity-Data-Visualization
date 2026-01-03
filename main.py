@@ -6,6 +6,7 @@ import string #ascii values
 import csv #built in functions for handling csv files
 import time #used to track processor execution time for the sorts
 import sys #to perform system operations such as force quit application
+import os #operating system library
 
 #Establish Connection with Database
 connect = sqlite3.connect("Database.db") 
@@ -144,5 +145,23 @@ def ExecutionTimer(SortFunction): #Takes type of sort as the parameter
     time_taken = stop_timer - start_timer #calculates final time
     return time_taken
 
+#Function which loads the CSV file so that it can be passed to the sort functions
+def LoadCSV(name_of_file):
+    #Checks if csv file exists
+    if not os.path.exists(name_of_file):
+        return "File Path Not Found"
+    #CSV file exists - opens file, reads lines, stores in the variable items
+    with open (name_of_file, newline="") as file:
+        reader = csv.reader(file)
+        items = [row[0] for row in reader] #scans row by row and stores data as a string
+        if all(x.isdigit() for x in items): #checks list is of digits only
+            items = [int(x) for x in items] #converts to integer type
+        elif all(x.isalpha() for x in items): #checks list is of letters only
+            pass #already formatted as string
+        else:
+            return "Mixed or Invalid CSV File - Must be letters or digits only" #only seen if user uploads faulty csv file
+        return items
+        
 #GenerateDatabase() #calls the function
 Menu()
+print(LoadCSV("list.csv"))
