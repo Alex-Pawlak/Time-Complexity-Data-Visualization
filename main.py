@@ -122,24 +122,25 @@ def DBtoCSV():
     return ".db file successfully converted to .csv file"
 
 #Bubble Sort Function
-def BubbleSort():
+def BubbleSort(list):
     # CODE GOES HERE
-    return "BS"
+    return f"BS {list}"
 
 #Insertion Sort Function 
-def InsetionSort():
+def InsetionSort(list):
     # CODE GOES HERE
-    return "IS"
+    return f"IS {list}"
 
 #Merge Sort Function
-def MergeSort():
+def MergeSort(list):
     # CODE GOES HERE
-    return "MS"
+    return f"MS {list}"
 
 #Processor Execution Timing Function Based on Sort Performed
 def ExecutionTimer(SortFunction): #Takes type of sort as the parameter
+    items = LoadCSV("list.csv")
     start_timer = time.perf_counter()
-    SortFunction() #Performs sort
+    SortFunction(items) #Performs sort
     stop_timer = time.perf_counter()
 
     time_taken = stop_timer - start_timer #calculates final time
