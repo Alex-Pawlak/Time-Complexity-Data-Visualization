@@ -100,7 +100,7 @@ def GenerateItem(item_type,item_length):
         
     elif item_type.lower() == "d": #digits only
         if all(x.isdigit() for x in existing_items):
-            return (''.join(random.choices(string.digits, k=item_length)))
+            return (''.join(random.choices(string.digits, k=item_length))) #sometimes generates 5 length digit - if 0 is the first num for example, it gets ignored in python
         else:
             type_error = True
             return type_error
@@ -123,7 +123,12 @@ def DBtoCSV():
 
 #Bubble Sort Function
 def BubbleSort(list):
-    # CODE GOES HERE
+    for i in range(len(list)-1): #passes
+        for x in range(len(list)-1-i): #swaps
+            if list[x] > list[x+1]: #value to left greater than value to the right
+                temp = list[x+1] #temporary variable to prevent it from being overwritten
+                list[x+1] = list[x] #next 2 lines swap them around
+                list[x] = temp
     return f"BS {list}"
 
 #Insertion Sort Function 
@@ -140,7 +145,7 @@ def MergeSort(list):
 def ExecutionTimer(SortFunction): #Takes type of sort as the parameter
     items = LoadCSV("list.csv")
     start_timer = time.perf_counter()
-    SortFunction(items) #Performs sort
+    print(SortFunction(items)) #Performs sort
     stop_timer = time.perf_counter()
 
     time_taken = stop_timer - start_timer #calculates final time
@@ -163,6 +168,4 @@ def LoadCSV(name_of_file):
             return "Mixed or Invalid CSV File - Must be letters or digits only" #only seen if user uploads faulty csv file
         return items
         
-#GenerateDatabase() #calls the function
 Menu()
-print(LoadCSV("list.csv"))
