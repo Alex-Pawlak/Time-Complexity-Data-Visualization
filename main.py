@@ -133,7 +133,13 @@ def BubbleSort(list):
 
 #Insertion Sort Function 
 def InsetionSort(list):
-    # CODE GOES HERE
+    for i in range(1,len(list)): #loop through list starting from second element
+        current_item = list[i]
+        index = i-1 #sotres position of item before current_item
+        while index >= 0 and list[index] > current_item: #moves left until items no longer greater than current item
+            list[index+1] = list[index] #shift larger item to the right
+            index -= 1 #return to previous position
+        list[index+1] = current_item #reset current item
     return f"IS {list}"
 
 #Merge Sort Function
