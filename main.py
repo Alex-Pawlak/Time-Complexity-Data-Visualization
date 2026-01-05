@@ -144,8 +144,34 @@ def InsetionSort(list):
 
 #Merge Sort Function
 def MergeSort(list):
-    # CODE GOES HERE
-    return f"MS {list}"
+    if len(list) <= 1: #if there are 0 or 1 elements, list is sorted
+        return list
+    
+    middle_position = len(list) // 2 #index of middle value in list
+    
+    sorted_left_half = MergeSort(list[:middle_position]) #uses recursive function to keep sorting left half items
+    sorted_right_half = MergeSort(list[middle_position:]) #uses recursive function to keep sorting left half items
+
+    return Merge(sorted_left_half,sorted_right_half) #merges and returns both halfs
+
+#Merge Function
+def Merge(sorted_left,sorted_right):
+    sorted_list = [] #stores sorted list in this array
+    i=0
+    x=0
+    
+    while i < len(sorted_left) and x < len(sorted_right): #loops until no items remaining
+        if sorted_left[i] < sorted_right[x]: #compares items
+            sorted_list.append(sorted_left[i]) #appends smaller item from left
+            i+=1 #moves to next item to the left
+        else:
+            sorted_list.append(sorted_right[x]) #otherwise append smaller item to the right
+            x+=1 #moves to next item to the right
+
+    sorted_list += sorted_left[i:] #any remaining items appended from left
+    sorted_list += sorted_right[x:] #any remaining items appended from right
+
+    return sorted_list 
 
 #Processor Execution Timing Function Based on Sort Performed
 def ExecutionTimer(SortFunction): #Takes type of sort as the parameter
