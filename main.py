@@ -52,7 +52,7 @@ def GenerateDatabase():
         #Creates a new table Database.db: single column "Item" - primary key
         cursor.execute('''
         CREATE TABLE Database (
-            Item TEXT NOT NULL PRIMARY KEY
+            Item TEXT NOT NULL
         )
         ''') #commits transaction
         print("Database has been overwrited")
@@ -60,7 +60,7 @@ def GenerateDatabase():
         #Creates a new table Database.db if it doesn't already exists: single column "Item" - primary key
         cursor.execute('''
         CREATE TABLE IF NOT EXISTS Database (
-            Item TEXT NOT NULL PRIMARY KEY
+            Item TEXT NOT NULL
         )
         ''')
     connect.commit() #commits transaction
