@@ -36,6 +36,22 @@ def Menu():
     else:
         print("Invalid Choice")
     
+    if choice == 3 or choice == 4 or choice == 5: 
+        create = input("Create sortedlist.csv of this data? (Y/N)")
+        if create.lower() == "y":
+            match choice:
+                case 3:
+                    sort_type = SortedListCSV(BubbleSort)
+                case 4:
+                    sort_type = SortedListCSV(InsetionSort)
+                case 5:
+                    sort_type = SortedListCSV(MergeSort)
+            print(sort_type)
+        elif create.lower() =="n":
+            print("sortedlist.csv not updated/created")
+        else:
+            print("Invalid Choice")
+    
 #Databse Generation Function (Users able to upload their own .db files if they wish however)
 def GenerateDatabase():
     #User determines whether to overwrite current database, or add to the existing one
@@ -129,7 +145,7 @@ def BubbleSort(list):
                 temp = list[x+1] #temporary variable to prevent it from being overwritten
                 list[x+1] = list[x] #next 2 lines swap them around
                 list[x] = temp
-    return f"BS {list}"
+    return list
 
 #Insertion Sort Function 
 def InsetionSort(list):
@@ -140,7 +156,7 @@ def InsetionSort(list):
             list[index+1] = list[index] #shift larger item to the right
             index -= 1 #return to previous position
         list[index+1] = current_item #reset current item
-    return f"IS {list}"
+    return list
 
 #Merge Sort Function
 def MergeSort(list):
@@ -199,5 +215,18 @@ def LoadCSV(name_of_file):
         else:
             return "Mixed or Invalid CSV File - Must be letters or digits only" #only seen if user uploads faulty csv file
         return items
-        
+
+#Function which creates a sorted list csv file after a sort is performed
+def SortedListCSV(SortFunction):
+    items = LoadCSV("list.csv")
+    #Opens/Overwrites current or makes a new csv file if it doesn't already exists and writes data from .db file to .csv file
+    with open("sortedlist.csv","w",newline="") as file:
+        writer = csv.writer(file)
+        for i in SortFunction(items):
+            writer.writerow([i])
+
+    return "sortedlist.csv file has been created"
+
+#Function which checks if user 
+
 Menu()
