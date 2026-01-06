@@ -36,20 +36,21 @@ def Menu():
     else:
         print("Invalid Choice")
     
+    #checks if a sort has been executed
     if choice == 3 or choice == 4 or choice == 5: 
         create = input("Create sortedlist.csv of this data? (Y/N)")
         if create.lower() == "y":
-            match choice:
+            match choice: #choice is the type of sort performed by the user
                 case 3:
-                    sort_type = SortedListCSV(BubbleSort)
+                    sort_type = SortedListCSV(BubbleSort) #creates sorted list file
                 case 4:
-                    sort_type = SortedListCSV(InsetionSort)
+                    sort_type = SortedListCSV(InsetionSort) #creates sorted list file
                 case 5:
-                    sort_type = SortedListCSV(MergeSort)
+                    sort_type = SortedListCSV(MergeSort) #creates sorted list file
             print(sort_type)
-        elif create.lower() =="n":
+        elif create.lower() =="n": #user does not want sorted list file
             print("sortedlist.csv not updated/created")
-        else:
+        else: #any other input
             print("Invalid Choice")
     
 #Databse Generation Function (Users able to upload their own .db files if they wish however)
@@ -218,15 +219,13 @@ def LoadCSV(name_of_file):
 
 #Function which creates a sorted list csv file after a sort is performed
 def SortedListCSV(SortFunction):
-    items = LoadCSV("list.csv")
-    #Opens/Overwrites current or makes a new csv file if it doesn't already exists and writes data from .db file to .csv file
+    items = LoadCSV("list.csv") #loads csv and stores the unsorted list of items in the variable: items
+    #Opens/Overwrites current or makes a new csv file if it doesn't already exists and writes sorted item list into sortedlist.csv file
     with open("sortedlist.csv","w",newline="") as file:
         writer = csv.writer(file)
-        for i in SortFunction(items):
-            writer.writerow([i])
+        for i in SortFunction(items): #for each item in the sorted list
+            writer.writerow([i]) #write individual item
 
-    return "sortedlist.csv file has been created"
-
-#Function which checks if user 
+    return "sortedlist.csv file has been created" #verification for user that the list has been created
 
 Menu()
