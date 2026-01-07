@@ -7,6 +7,7 @@ import csv #built in functions for handling csv files
 import time #used to track processor execution time for the sorts
 import sys #to perform system operations such as force quit application
 import os #operating system library
+import matplotlib.pyplot as plt
 
 #Establish Connection with Database
 connect = sqlite3.connect("Database.db") 
@@ -21,6 +22,7 @@ def Menu():
 = 3 - Perform Bubble Sort on .csv file                           =
 = 4 - Perform Insertion Sort on .csv file                        =
 = 5 - Perform Merge Sort on .csv file                            =
+= 6 - Show Time Complexity of All Sorts on Graph                 =                     
 ==================================================================
 """))
     if choice == 1:
@@ -33,6 +35,8 @@ def Menu():
         print(ExecutionTimer(InsetionSort))
     elif choice == 5:
         print(ExecutionTimer(MergeSort))
+    elif choice == 6:
+        ShowGraph()
     else:
         print("Invalid Choice")
     
@@ -227,5 +231,14 @@ def SortedListCSV(SortFunction):
             writer.writerow([i]) #write individual item
 
     return "sortedlist.csv file has been created" #verification for user that the list has been created
+
+def ShowGraph():
+    x_axis = ["Bubble Sort", "Insertion Sort", "Merge Sort"]
+    y_axis =[ExecutionTimer(BubbleSort), ExecutionTimer(InsetionSort), ExecutionTimer(MergeSort)]
+
+    plt.bar(x_axis,y_axis)
+    plt.title("Time Complexity of Sorts")
+    plt.ylabel("Time (Seconds)")
+    plt.show()
 
 Menu()
