@@ -1,6 +1,8 @@
 # About
 Designed and created an original time complexity data visualization Python program.
+
 Measures performance of key sorting algorithms (Bubble Sort, Insertion Sort and Merge Sort)
+
 Implements stand-out features such as database generation, adding data to the database using SQL queries in SQLite3, .db file to .csv file converter, file manipulation and more. All listed in Features section.
 
 # Features
