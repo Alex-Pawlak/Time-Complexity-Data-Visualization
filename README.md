@@ -18,7 +18,7 @@ For this demonstration, I created a database with 1000 items consisting of digit
 <p align="center">
   <img src="1000_items_demo.png" alt="Time Complexity of Sorting Algorithms">
 </p>
-![1000 item demonstration](1000_items_demo.png)
+
 
 # Skills Developed
 - File Manipulation
