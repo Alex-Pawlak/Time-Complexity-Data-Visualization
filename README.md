@@ -33,11 +33,6 @@ For this demonstration, I created a database with 1000 items consisting of digit
 - SQLite3
 - matplotlib
 
-# Future Updates
-- Change the User Interface from command line to graphical
-- Add a couple more sorting algorithms such as quick sort
-- Add a visualiser for each algorithm
-
 ## Project Structure
 ```
 /Project
@@ -45,3 +40,8 @@ For this demonstration, I created a database with 1000 items consisting of digit
  ├──Database.db
  ├──list.csv
 ```
+# Future Updates
+- Change the User Interface from command line to graphical
+- Add a couple more sorting algorithms such as quick sort
+- Add a visualiser for each algorithm
+
