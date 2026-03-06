@@ -14,6 +14,7 @@ Implements stand-out features such as database generation, adding data to the da
 
 # Preview
 For this demonstration, I created a database with 1000 items consisting of digitis only, converted it into a csv file, performed all sorts and plotted the results on a simple to read graph.
+
 ![1000 item demonstration](1000_items_demo.png)
 
 # Skills Developed
