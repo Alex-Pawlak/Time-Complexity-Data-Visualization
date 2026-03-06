@@ -12,6 +12,10 @@ Implements stand-out features such as database generation, adding data to the da
 - Tracks performance of each algorithm by timing how much time sorts take
 - Displaying Time Complexity on a graph using matplotlib
 
+# Preview
+For this demonstration, I created a database with 1000 items consisting of digitis only, converted it into a csv file, performed all sorts and plotted the results on a simple to read graph.
+![1000 item demonstration](1000_items_demo.png)
+
 # Skills Developed
 - File Manipulation
 - Working with Databases and CSV files
