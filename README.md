@@ -15,10 +15,10 @@ Implements stand-out features such as database generation, adding data to the da
 - Displaying Time Complexity on a graph using matplotlib
 
 # Preview
-For this demonstration, I created a database with 1000 items consisting of digitis only, converted it into a csv file, performed all sorts and plotted the results on a simple to read graph.
+For this demonstration, I created a database with 10000 items consisting of letters only, converted it into a csv file, performed all sorts and plotted the results on a simple to read graph.
 
 <p align="center">
-  <img src="1000_items_demo.png" alt="Time Complexity of Sorting Algorithms">
+  <img src="10000_items_demo.png" alt="Time Complexity of Sorting Algorithms">
 </p>
 
 # How to run
