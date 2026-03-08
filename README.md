@@ -3,7 +3,7 @@ Designed and created an original time complexity data visualization Python progr
 
 Measures performance of key sorting algorithms (Bubble Sort, Insertion Sort and Merge Sort)
 
-Implements stand-out features such as database generation, adding data to the database using SQL queries in SQLite3, .db file to .csv file converter, file manipulation and more. All listed in Features section.
+Implements stand-out features such as database generation, adding data to the database using SQL queries in SQLite3, .db file to .csv file converter, file manipulation and more. All listed in the features section.
 
 # Features
 - Generating databases (.db files)
@@ -21,6 +21,20 @@ For this demonstration, I created a database with 1000 items consisting of digit
   <img src="1000_items_demo.png" alt="Time Complexity of Sorting Algorithms">
 </p>
 
+# How to run
+Prerequisites:
+- Python 3.10+
+- Matplotlib Library (Install using: 'pip install matplotlib')
+
+Steps:
+- Clone the repository or just the main.py file
+- Run The Program
+
+Notes: 
+- You may upload your own database or csv file
+- Example database and CSV file has been attached in the repository if needed.
+- The program itself also allows you to create a database of randomly generated digits or characters only and convert to a csv file ready for sorting.
+- Once you upload or have the necessary files, the sorted list will appear in the terminal. 
 
 # Skills Developed
 - File Manipulation
@@ -46,4 +60,7 @@ For this demonstration, I created a database with 1000 items consisting of digit
 - Change the User Interface from command line to graphical
 - Add a couple more sorting algorithms such as quick sort
 - Add a visualiser for each algorithm
+
+# License
+MIT © 2026 Alex Pawlak
 
