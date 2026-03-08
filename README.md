@@ -22,15 +22,15 @@ For this demonstration, I created a database with 1000 items consisting of digit
 </p>
 
 # How to run
-Prerequisites:
+### Prerequisites
 - Python 3.10+
 - Matplotlib Library (Install using: 'pip install matplotlib')
 
-Steps:
+### Steps
 - Clone the repository or just the main.py file
 - Run The Program
 
-Notes: 
+### Notes
 - You may upload your own database or csv file
 - Example database and CSV file has been attached in the repository if needed.
 - The program itself also allows you to create a database of randomly generated digits or characters only and convert to a csv file ready for sorting.
